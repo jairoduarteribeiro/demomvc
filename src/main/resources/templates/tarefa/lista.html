@@ -26,9 +26,9 @@
         <td th:text="${tarefa.nome}"></td>
         <td th:text="${tarefa.dataEntrega}"></td>
         <td th:text="${tarefa.responsavel}"></td>
-        <td colspan="2"><a class="btn btn-info btn-sm" role="button">
+        <td colspan="2"><a class="btn btn-info btn-sm" role="button" th:href="@{/tarefas/editar/{id}(id=${tarefa.id})}">
             <span class="oi oi-brush" title="Editar" aria-hidden="true">Editar</span>
-          </a> <a class="btn btn-info btn-sm" role="button">
+          </a> <a class="btn btn-info btn-sm" role="button" th:href="@{/tarefas/excluir/{id}(id=${tarefa.id})}">
             <span class="oi oi-brush" title="Excluir" aria-hidden="true">Excluir</span>
           </a></td>
 

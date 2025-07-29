@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demomvc.entity.Tarefa;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 @RequestMapping("/tarefas")
@@ -39,6 +41,12 @@ public class TarefaController {
         ModelAndView mv = new ModelAndView("tarefa/lista");
         mv.addObject("tarefas", tarefas);
         return mv;
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id) {
+        tarefas.removeIf(tarefa -> tarefa.getId().equals(id));
+        return "redirect:/tarefas/lista";
     }
 
 }
