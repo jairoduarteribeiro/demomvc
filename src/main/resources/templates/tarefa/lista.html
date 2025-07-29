@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>Gerenciador de Tarefas</title>
@@ -20,11 +21,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Criação de conteúdo</td>
-        <td>15/08/2024</td>
-        <td>Luciane</td>
+      <tr th:each="tarefa : ${tarefas}">
+        <td th:text="${tarefa.id}"></td>
+        <td th:text="${tarefa.nome}"></td>
+        <td th:text="${tarefa.dataEntrega}"></td>
+        <td th:text="${tarefa.responsavel}"></td>
         <td colspan="2"><a class="btn btn-info btn-sm" role="button">
             <span class="oi oi-brush" title="Editar" aria-hidden="true">Editar</span>
           </a> <a class="btn btn-info btn-sm" role="button">
