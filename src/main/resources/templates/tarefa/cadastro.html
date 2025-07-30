@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -12,22 +13,24 @@
 
 <body>
 
-  <form method="post" action="/tarefas/salvar">
+  <form method="post" th:action="${tarefa.id == null} ? @{/tarefas/salvar} : @{/tarefas/editar}" th:object="${tarefa}">
+
+    <input type="hidden" th:field="*{id}">
 
 
     <div class="mb-3">
       <label for="exampleInputTarefa" class="form-label">Nome da Tarefa</label>
-      <input type="text" class="form-control" id="nome" name="nome">
+      <input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}">
     </div>
 
     <div class="mb-3">
       <label for="exampleInputDataEntrega" class="form-label">Data entrega: </label>
-      <input type="date" class="form-control" id="datacriacao" aria-describedby="datalHelp" name="dataEntrega">
+      <input type="date" class="form-control" id="datacriacao" aria-describedby="datalHelp" name="dataEntrega" th:field="*{dataEntrega}">
 
     </div>
     <div class="mb-3">
       <label for="exampleInputResponsavel" class="form-label">Responsável: </label>
-      <input type="text" class="form-control" id="responsavel" aria-describedby="responsavellHelp" name="responsavel">
+      <input type="text" class="form-control" id="responsavel" aria-describedby="responsavellHelp" name="responsavel" th:field="*{responsavel}">
 
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
