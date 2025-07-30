@@ -3,10 +3,13 @@ package com.example.demomvc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demomvc.entity.Tarefa;
 import com.example.demomvc.service.TarefaService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +28,8 @@ public class TarefaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Tarefa tarefa) {
+    public String salvar(@Valid Tarefa tarefa, BindingResult result) {
+        if (result.hasErrors()) return "/tarefa/cadastro";
         tarefaService.salvar(tarefa);
         return "redirect:/tarefas/lista";
     }
@@ -43,7 +47,8 @@ public class TarefaController {
     }
 
     @PostMapping("/editar")
-    public String editar(Tarefa tarefa) {
+    public String editar(@Valid Tarefa tarefa, BindingResult result) {
+        if (result.hasErrors()) return "/tarefa/cadastro";
         tarefaService.editar(tarefa);
         return "redirect:/tarefas/lista";
     }
